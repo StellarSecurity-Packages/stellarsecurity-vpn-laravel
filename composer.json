@@ -1,0 +1,21 @@
+{
+  "name": "stellarsecurity/stellarsecurity-vpn-laravel",
+  "description": "Enterprise SDK for Stellar VPN integration.",
+  "type": "library",
+  "license": "proprietary",
+  "autoload": {
+    "psr-4": {
+      "StellarSecurity\\LaravelVpn\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=8.1"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "StellarSecurity\\LaravelVpn\\StellarVpnServiceProvider"
+      ]
+    }
+  }
+}
