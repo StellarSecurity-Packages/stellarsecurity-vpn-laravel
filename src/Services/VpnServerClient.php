@@ -4,7 +4,6 @@ namespace StellarSecurity\LaravelVpn\Services;
 
 use StellarSecurity\LaravelVpn\Http\VpnHttpClient;
 use StellarSecurity\LaravelVpn\Contracts\VpnServerClientInterface;
-use StellarSecurity\LaravelVpn\Exceptions\VpnApiException;
 
 class VpnServerClient implements VpnServerClientInterface
 {
@@ -21,6 +20,12 @@ class VpnServerClient implements VpnServerClientInterface
     {
         $url = $this->baseUrl . '/v1/vpnservercontroller/list';
         return $this->http->get($url);
+    }
+
+    public function listServersRaw(): array
+    {
+        $url = $this->baseUrl . '/v1/vpnservercontroller/list';
+        return $this->http->getRaw($url);
     }
 
     public function issueCredentials(int $userId, string $deviceId): array

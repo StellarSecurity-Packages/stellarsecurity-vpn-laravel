@@ -22,6 +22,20 @@ class VpnHttpClient
         return json_decode($res->getBody()->getContents(), true) ?? [];
     }
 
+    public function getRaw(string $url): array
+    {
+        $res = $this->client->get($url);
+
+        return [
+            'body' => (string) $res->getBody(),
+            'content_type' => $res->getHeaderLine('Content-Type') ?: 'application/json; charset=UTF-8',
+            'signature' => $res->getHeaderLine('X-Stellar-Signature'),
+            'key_id' => $res->getHeaderLine('X-Stellar-Key-Id'),
+            'issued_at' => $res->getHeaderLine('X-Stellar-Issued-At'),
+            'expires_at' => $res->getHeaderLine('X-Stellar-Expires-At'),
+        ];
+    }
+
     public function post(string $url, array $data): array
     {
         $res = $this->client->post($url, ['form_params' => $data]);
